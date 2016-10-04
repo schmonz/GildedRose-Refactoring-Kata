@@ -48,14 +48,14 @@ update_quality(Item items[], int size)
         {
             if (items[i].quality > MIN_QUALITY && !is_sulfuras(items[i]))
             {
-                items[i].quality = items[i].quality - 1;
+                --items[i].quality;
             }
         }
         else
         {
             if (items[i].quality < MAX_QUALITY)
             {
-                items[i].quality = items[i].quality + 1;
+                ++items[i].quality;
 
                 if (is_passes(items[i]))
                 {
@@ -63,7 +63,7 @@ update_quality(Item items[], int size)
                     {
                         if (items[i].quality < MAX_QUALITY)
                         {
-                            items[i].quality = items[i].quality + 1;
+                            ++items[i].quality;
                         }
                     }
 
@@ -71,7 +71,7 @@ update_quality(Item items[], int size)
                     {
                         if (items[i].quality < MAX_QUALITY)
                         {
-                            items[i].quality = items[i].quality + 1;
+                            ++items[i].quality;
                         }
                     }
                 }
@@ -80,7 +80,7 @@ update_quality(Item items[], int size)
 
         if (!is_sulfuras(items[i]))
         {
-            items[i].sellIn = items[i].sellIn - 1;
+            --items[i].sellIn;
         }
 
         if (items[i].sellIn < 0)
@@ -91,7 +91,7 @@ update_quality(Item items[], int size)
                 {
                     if (items[i].quality > MIN_QUALITY && !is_sulfuras(items[i]))
                     {
-                        items[i].quality = items[i].quality - 1;
+                        --items[i].quality;
                     }
                 }
                 else
@@ -103,7 +103,7 @@ update_quality(Item items[], int size)
             {
                 if (items[i].quality < MAX_QUALITY)
                 {
-                    items[i].quality = items[i].quality + 1;
+                    ++items[i].quality;
                 }
             }
         }
