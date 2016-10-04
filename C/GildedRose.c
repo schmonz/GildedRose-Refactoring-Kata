@@ -19,7 +19,7 @@ print_item(char* buffer, Item* item)
     sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
 }
 
-bool is_brie_or_backstage_passes(Item item)
+bool isnt_brie_or_backstage_passes(Item item)
 {
     return (strcmp(item.name, "Aged Brie")
             && strcmp(item.name, "Backstage passes to a TAFKAL80ETC concert"));
@@ -37,7 +37,7 @@ update_quality(Item items[], int size)
     
     for (i = 0; i < size; i++)
     {
-        if (is_brie_or_backstage_passes(items[i]))
+        if (isnt_brie_or_backstage_passes(items[i]))
         {
             if (items[i].quality > 0)
             {
