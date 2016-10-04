@@ -24,6 +24,10 @@ bool is_brie(Item item)
     return (0 == strcmp(item.name, "Aged Brie"));
 }
 
+bool is_conjured(Item item)
+{
+    return (0 == strcmp(item.name, "Conjured Mana Cake"));
+}
 bool is_passes(Item item)
 {
     return (0 == strcmp(item.name, "Backstage passes to a TAFKAL80ETC concert"));
@@ -58,6 +62,10 @@ update_quality(Item items[], int size)
             if (!is_sulfuras(items[i]))
             {
                 decrement_quality(&items[i]);
+
+                if (is_conjured(items[i])) {
+                    decrement_quality(&items[i]);
+                }
             }
         }
         else
@@ -88,6 +96,10 @@ update_quality(Item items[], int size)
                     if (!is_sulfuras(items[i]))
                     {
                         decrement_quality(&items[i]);
+
+                        if (is_conjured(items[i])) {
+                            decrement_quality(&items[i]);
+                        }
                     }
                 }
                 else
