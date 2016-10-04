@@ -39,12 +39,9 @@ update_quality(Item items[], int size)
     {
         if (isnt_brie_or_backstage_passes(items[i]))
         {
-            if (items[i].quality > 0)
+            if (items[i].quality > 0 && is_sulfuras(items[i]))
             {
-                if (is_sulfuras(items[i]))
-                {
-                    items[i].quality = items[i].quality - 1;
-                }
+                items[i].quality = items[i].quality - 1;
             }
         }
         else
@@ -85,12 +82,9 @@ update_quality(Item items[], int size)
             {
                 if (strcmp(items[i].name, "Backstage passes to a TAFKAL80ETC concert"))
                 {
-                    if (items[i].quality > 0)
+                    if (items[i].quality > 0 && is_sulfuras(items[i]))
                     {
-                        if (is_sulfuras(items[i]))
-                        {
-                            items[i].quality = items[i].quality - 1;
-                        }
+                        items[i].quality = items[i].quality - 1;
                     }
                 }
                 else
