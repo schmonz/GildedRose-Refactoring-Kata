@@ -37,6 +37,12 @@ bool is_sulfuras(Item item)
     return (0 == strcmp(item.name, "Sulfuras, Hand of Ragnaros"));
 }
 
+void increment_quality(Item *item)
+{
+    if (item->quality < MAX_QUALITY)
+        ++item->quality;
+}
+
 void
 update_quality(Item items[], int size) 
 {
@@ -53,28 +59,15 @@ update_quality(Item items[], int size)
         }
         else
         {
-            if (items[i].quality < MAX_QUALITY)
+            increment_quality(&items[i]);
+
+            if (is_passes(items[i]))
             {
-                ++items[i].quality;
+                if (items[i].sellIn < 11)
+                    increment_quality(&items[i]);
 
-                if (is_passes(items[i]))
-                {
-                    if (items[i].sellIn < 11)
-                    {
-                        if (items[i].quality < MAX_QUALITY)
-                        {
-                            ++items[i].quality;
-                        }
-                    }
-
-                    if (items[i].sellIn < 6)
-                    {
-                        if (items[i].quality < MAX_QUALITY)
-                        {
-                            ++items[i].quality;
-                        }
-                    }
-                }
+                if (items[i].sellIn < 6)
+                    increment_quality(&items[i]);
             }
         }
 
@@ -101,10 +94,7 @@ update_quality(Item items[], int size)
             }
             else
             {
-                if (items[i].quality < MAX_QUALITY)
-                {
-                    ++items[i].quality;
-                }
+                increment_quality(&items[i]);
             }
         }
     }
