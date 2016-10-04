@@ -43,6 +43,12 @@ void increment_quality(Item *item)
         ++item->quality;
 }
 
+void decrement_quality(Item *item)
+{
+    if (item->quality > MIN_QUALITY)
+        --item->quality;
+}
+
 void
 update_quality(Item items[], int size) 
 {
@@ -52,9 +58,9 @@ update_quality(Item items[], int size)
     {
         if (!is_brie(items[i]) && !is_passes(items[i]))
         {
-            if (items[i].quality > MIN_QUALITY && !is_sulfuras(items[i]))
+            if (!is_sulfuras(items[i]))
             {
-                --items[i].quality;
+                decrement_quality(&items[i]);
             }
         }
         else
@@ -82,9 +88,9 @@ update_quality(Item items[], int size)
             {
                 if (!is_passes(items[i]))
                 {
-                    if (items[i].quality > MIN_QUALITY && !is_sulfuras(items[i]))
+                    if (!is_sulfuras(items[i]))
                     {
-                        --items[i].quality;
+                        decrement_quality(&items[i]);
                     }
                 }
                 else
