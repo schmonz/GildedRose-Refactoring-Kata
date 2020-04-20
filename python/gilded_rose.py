@@ -8,7 +8,10 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            MalleableItem(item).update()
+            if item.name == "Sulfuras, Hand of Ragnaros":
+                Sulfuras(item).update()
+            else:
+                MalleableItem(item).update()
 
 
 class Item:
@@ -28,15 +31,13 @@ class MalleableItem:
     def decrease_sell_in(self):
         item = self.item
 
-        if item.name != "Sulfuras, Hand of Ragnaros":
-            item.sell_in = item.sell_in - 1
+        item.sell_in = item.sell_in - 1
 
     def decrease_quality(self):
         item = self.item
 
         if item.quality > 0:
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.quality = item.quality - 1
+            item.quality = item.quality - 1
 
     def increase_quality(self):
         item = self.item
@@ -71,3 +72,11 @@ class MalleableItem:
                 item.quality = 0
             else:
                 self.decrease_quality()
+
+
+class Sulfuras(MalleableItem):
+    def decrease_quality(self):
+        pass
+
+    def decrease_sell_in(self):
+        pass
