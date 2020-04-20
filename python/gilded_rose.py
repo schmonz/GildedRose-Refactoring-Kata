@@ -65,9 +65,9 @@ class MalleableItem:
         self.decrease_sell_in()
         if item.sell_in < 0:
             if item.name != "Aged Brie":
-                if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                    self.decrease_quality()
-                else:
+                if item.name == "Backstage passes to a TAFKAL80ETC concert":
                     item.quality = 0
+                else:
+                    self.decrease_quality()
             else:
                 self.increase_quality()
