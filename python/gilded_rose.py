@@ -12,6 +12,8 @@ class GildedRose(object):
                 Sulfuras(item).update()
             elif item.name == "Aged Brie":
                 AgedBrie(item).update()
+            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                BackstagePasses(item).update()
             else:
                 MalleableItem(item).update()
 
@@ -50,28 +52,20 @@ class MalleableItem:
     def increase_backstage_quality_further(self):
         item = self.item
 
-        if item.name == "Backstage passes to a TAFKAL80ETC concert":
-            if item.sell_in < 11:
-                self.increase_quality()
-            if item.sell_in < 6:
-                self.increase_quality()
+        if item.sell_in < 11:
+            self.increase_quality()
+        if item.sell_in < 6:
+            self.increase_quality()
 
     def update(self):
         item = self.item
 
-        if item.name == "Backstage passes to a TAFKAL80ETC concert":
-            self.increase_quality()
-            self.increase_backstage_quality_further()
-        else:
-            self.decrease_quality()
+        self.decrease_quality()
 
         self.decrease_sell_in()
 
         if item.sell_in < 0:
-            if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                item.quality = 0
-            else:
-                self.decrease_quality()
+            self.decrease_quality()
 
 
 class Sulfuras(MalleableItem):
@@ -88,3 +82,14 @@ class AgedBrie(MalleableItem):
         self.decrease_sell_in()
         if self.item.sell_in < 0:
             self.increase_quality()
+
+
+class BackstagePasses(MalleableItem):
+    def update(self):
+        self.increase_quality()
+        self.increase_backstage_quality_further()
+
+        self.decrease_sell_in()
+
+        if self.item.sell_in < 0:
+            self.item.quality = 0
