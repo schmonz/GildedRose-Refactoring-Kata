@@ -32,6 +32,12 @@ class MalleableItem:
             if item.name != "Sulfuras, Hand of Ragnaros":
                 item.quality = item.quality - 1
 
+    def increase_quality(self):
+        item = self.item
+
+        if item.quality < 50:
+            item.quality = item.quality + 1
+
     def update(self):
         item = self.item
 
@@ -42,11 +48,9 @@ class MalleableItem:
                 item.quality = item.quality + 1
                 if item.name == "Backstage passes to a TAFKAL80ETC concert":
                     if item.sell_in < 11:
-                        if item.quality < 50:
-                            item.quality = item.quality + 1
+                        self.increase_quality()
                     if item.sell_in < 6:
-                        if item.quality < 50:
-                            item.quality = item.quality + 1
+                        self.increase_quality()
         if item.name != "Sulfuras, Hand of Ragnaros":
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
@@ -56,5 +60,4 @@ class MalleableItem:
                 else:
                     item.quality = item.quality - item.quality
             else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
+                self.increase_quality()
