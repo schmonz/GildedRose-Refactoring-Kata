@@ -76,9 +76,9 @@ class AgedBrie(MalleableItem):
 class BackstagePasses(MalleableItem):
     def update_quality(self):
         self.increase_quality()
-        if self.item.sell_in < 11:
+        if self.item.sell_in <= 10:
             self.increase_quality()
-        if self.item.sell_in < 6:
+        if self.item.sell_in <= 5:
             self.increase_quality()
 
     def update(self):
