@@ -7,19 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            self.gimme_malleable_item(item).update()
-
-    def gimme_malleable_item(self, item):
-        if item.name == "Sulfuras, Hand of Ragnaros":
-            return Sulfuras(item)
-        elif item.name == "Aged Brie":
-            return AgedBrie(item)
-        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            return BackstagePasses(item)
-        elif item.name == "Conjured Mana Cake":
-            return Conjured(item)
-        else:
-            return MalleableItem(item)
+            MalleableItem.factory(item).update()
 
 
 class Item:
@@ -35,6 +23,19 @@ class Item:
 class MalleableItem:
     def __init__(self, item):
         self.item = item
+
+    @staticmethod
+    def factory(item):
+        if item.name == "Sulfuras, Hand of Ragnaros":
+            return Sulfuras(item)
+        elif item.name == "Aged Brie":
+            return AgedBrie(item)
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            return BackstagePasses(item)
+        elif item.name == "Conjured Mana Cake":
+            return Conjured(item)
+        else:
+            return MalleableItem(item)
 
     def decrease_sell_in(self):
         item = self.item
