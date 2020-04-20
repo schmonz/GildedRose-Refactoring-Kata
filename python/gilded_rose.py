@@ -49,14 +49,6 @@ class MalleableItem:
         if item.quality < 50:
             item.quality = item.quality + 1
 
-    def increase_backstage_quality_further(self):
-        item = self.item
-
-        if item.sell_in < 11:
-            self.increase_quality()
-        if item.sell_in < 6:
-            self.increase_quality()
-
     def update(self):
         item = self.item
 
@@ -89,7 +81,10 @@ class AgedBrie(MalleableItem):
 class BackstagePasses(MalleableItem):
     def update(self):
         self.increase_quality()
-        self.increase_backstage_quality_further()
+        if self.item.sell_in < 11:
+            self.increase_quality()
+        if self.item.sell_in < 6:
+            self.increase_quality()
 
         self.decrease_sell_in()
 
