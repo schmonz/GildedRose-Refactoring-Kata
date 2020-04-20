@@ -25,6 +25,12 @@ class MalleableItem:
     def __init__(self, item):
         self.item = item
 
+    def decrease_sell_in(self):
+        item = self.item
+
+        if item.name != "Sulfuras, Hand of Ragnaros":
+            item.sell_in = item.sell_in - 1
+
     def decrease_quality(self):
         item = self.item
 
@@ -51,8 +57,7 @@ class MalleableItem:
                         self.increase_quality()
                     if item.sell_in < 6:
                         self.increase_quality()
-        if item.name != "Sulfuras, Hand of Ragnaros":
-            item.sell_in = item.sell_in - 1
+        self.decrease_sell_in()
         if item.sell_in < 0:
             if item.name != "Aged Brie":
                 if item.name != "Backstage passes to a TAFKAL80ETC concert":
