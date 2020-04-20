@@ -93,11 +93,9 @@ class BackstagePasses(MalleableItem):
             self.item.quality = 0
 
 
-class Conjured(MalleableItem):
+class Conjured(MalleableItem, object):
     def decrease_quality(self):
-        item = self.item
-
-        if item.quality > 0:
-            item.quality = item.quality - 2
+        super(Conjured, self).decrease_quality()
+        super(Conjured, self).decrease_quality()
 
 
