@@ -38,30 +38,22 @@ class MalleableItem:
             return MalleableItem(item)
 
     def decrease_sell_in(self):
-        item = self.item
-
-        item.sell_in = item.sell_in - 1
+        self.item.sell_in = self.item.sell_in - 1
 
     def decrease_quality(self):
-        item = self.item
-
-        if item.quality > 0:
-            item.quality = item.quality - 1
+        if self.item.quality > 0:
+            self.item.quality = self.item.quality - 1
 
     def increase_quality(self):
-        item = self.item
-
-        if item.quality < 50:
-            item.quality = item.quality + 1
+        if self.item.quality < 50:
+            self.item.quality = self.item.quality + 1
 
     def update(self):
-        item = self.item
-
         self.decrease_quality()
 
         self.decrease_sell_in()
 
-        if item.sell_in < 0:
+        if self.item.sell_in < 0:
             self.decrease_quality()
 
 
