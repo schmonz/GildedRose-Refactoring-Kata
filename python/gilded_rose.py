@@ -41,12 +41,16 @@ class MalleableItem:
         self.item.sell_in = self.item.sell_in - 1
 
     def decrease_quality(self):
-        if self.item.quality > 0:
-            self.item.quality = self.item.quality - 1
+        self.increment_quality_by(-1)
 
     def increase_quality(self):
-        if self.item.quality < 50:
-            self.item.quality = self.item.quality + 1
+        self.increment_quality_by(1)
+
+    def increment_quality_by(self, amount):
+        if amount < 0 and self.item.quality > 0:
+            self.item.quality = self.item.quality + amount
+        elif amount > 0 and self.item.quality < 50:
+            self.item.quality = self.item.quality + amount
 
     def update(self):
         self.before_updating_sell_in()
