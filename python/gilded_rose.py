@@ -54,10 +54,13 @@ class MalleableItem:
         self.decrease_sell_in()
 
         if self.item.sell_in < 0:
-            self.update_quality()
+            self.when_sell_in_has_passed()
 
     def update_quality(self):
         self.decrease_quality()
+
+    def when_sell_in_has_passed(self):
+        self.update_quality()
 
 
 class Sulfuras(MalleableItem):
@@ -81,13 +84,8 @@ class BackstagePasses(MalleableItem):
         if self.item.sell_in <= 5:
             self.increase_quality()
 
-    def update(self):
-        self.update_quality()
-
-        self.decrease_sell_in()
-
-        if self.item.sell_in < 0:
-            self.item.quality = 0
+    def when_sell_in_has_passed(self):
+        self.item.quality = 0
 
 
 class Conjured(MalleableItem, object):
