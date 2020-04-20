@@ -49,12 +49,15 @@ class MalleableItem:
             self.item.quality = self.item.quality + 1
 
     def update(self):
-        self.decrease_quality()
+        self.update_quality()
 
         self.decrease_sell_in()
 
         if self.item.sell_in < 0:
-            self.decrease_quality()
+            self.update_quality()
+
+    def update_quality(self):
+        self.decrease_quality()
 
 
 class Sulfuras(MalleableItem):
@@ -66,22 +69,20 @@ class Sulfuras(MalleableItem):
 
 
 class AgedBrie(MalleableItem):
-    def update(self):
+    def update_quality(self):
         self.increase_quality()
-
-        self.decrease_sell_in()
-
-        if self.item.sell_in < 0:
-            self.increase_quality()
 
 
 class BackstagePasses(MalleableItem):
-    def update(self):
+    def update_quality(self):
         self.increase_quality()
         if self.item.sell_in < 11:
             self.increase_quality()
         if self.item.sell_in < 6:
             self.increase_quality()
+
+    def update(self):
+        self.increase_quality()
 
         self.decrease_sell_in()
 
