@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 class GildedRose(object):
 
     def __init__(self, items):
@@ -14,6 +13,8 @@ class GildedRose(object):
                 AgedBrie(item).update()
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                 BackstagePasses(item).update()
+            elif item.name == "Conjured Mana Cake":
+                Conjured(item).update()
             else:
                 MalleableItem(item).update()
 
@@ -90,3 +91,13 @@ class BackstagePasses(MalleableItem):
 
         if self.item.sell_in < 0:
             self.item.quality = 0
+
+
+class Conjured(MalleableItem):
+    def decrease_quality(self):
+        item = self.item
+
+        if item.quality > 0:
+            item.quality = item.quality - 2
+
+
