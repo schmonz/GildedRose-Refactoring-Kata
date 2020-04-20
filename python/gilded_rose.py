@@ -62,7 +62,9 @@ class MalleableItem:
             self.increase_backstage_quality_further()
         else:
             self.decrease_quality()
+
         self.decrease_sell_in()
+
         if item.sell_in < 0:
             if item.name == "Aged Brie":
                 self.increase_quality()
