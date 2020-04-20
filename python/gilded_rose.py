@@ -44,6 +44,16 @@ class MalleableItem:
         if item.quality < 50:
             item.quality = item.quality + 1
 
+    def increase_backstage_quality_further(self):
+        item = self.item
+
+        if item.quality < 50:
+            if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                if item.sell_in < 11:
+                    self.increase_quality()
+                if item.sell_in < 6:
+                    self.increase_quality()
+
     def update(self):
         item = self.item
 
@@ -51,12 +61,7 @@ class MalleableItem:
             self.decrease_quality()
         else:
             self.increase_quality()
-            if item.quality < 50:
-                if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    if item.sell_in < 11:
-                        self.increase_quality()
-                    if item.sell_in < 6:
-                        self.increase_quality()
+            self.increase_backstage_quality_further()
         self.decrease_sell_in()
         if item.sell_in < 0:
             if item.name != "Aged Brie":
