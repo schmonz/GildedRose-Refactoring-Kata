@@ -7,18 +7,19 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            malleable_item = MalleableItem(item)
+            self.gimme_malleable_item(item).update()
 
-            if item.name == "Sulfuras, Hand of Ragnaros":
-                malleable_item = Sulfuras(item)
-            elif item.name == "Aged Brie":
-                malleable_item = AgedBrie(item)
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                malleable_item = BackstagePasses(item)
-            elif item.name == "Conjured Mana Cake":
-                malleable_item = Conjured(item)
-
-            malleable_item.update()
+    def gimme_malleable_item(self, item):
+        if item.name == "Sulfuras, Hand of Ragnaros":
+            return Sulfuras(item)
+        elif item.name == "Aged Brie":
+            return AgedBrie(item)
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            return BackstagePasses(item)
+        elif item.name == "Conjured Mana Cake":
+            return Conjured(item)
+        else:
+            return MalleableItem(item)
 
 
 class Item:
@@ -99,5 +100,3 @@ class Conjured(MalleableItem, object):
     def decrease_quality(self):
         super(Conjured, self).decrease_quality()
         super(Conjured, self).decrease_quality()
-
-
