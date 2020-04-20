@@ -7,16 +7,18 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
+            malleable_item = MalleableItem(item)
+
             if item.name == "Sulfuras, Hand of Ragnaros":
-                Sulfuras(item).update()
+                malleable_item = Sulfuras(item)
             elif item.name == "Aged Brie":
-                AgedBrie(item).update()
+                malleable_item = AgedBrie(item)
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                BackstagePasses(item).update()
+                malleable_item = BackstagePasses(item)
             elif item.name == "Conjured Mana Cake":
-                Conjured(item).update()
-            else:
-                MalleableItem(item).update()
+                malleable_item = Conjured(item)
+
+            malleable_item.update()
 
 
 class Item:
