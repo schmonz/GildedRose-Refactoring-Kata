@@ -63,6 +63,6 @@ class MalleableItem:
                 if item.name != "Backstage passes to a TAFKAL80ETC concert":
                     self.decrease_quality()
                 else:
-                    item.quality = item.quality - item.quality
+                    item.quality = 0
             else:
                 self.increase_quality()
