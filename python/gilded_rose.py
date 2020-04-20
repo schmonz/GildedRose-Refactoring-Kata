@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-def update_item(item):
+def update_item(malleable_item):
+    item = malleable_item.item
+
     if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
         if item.quality > 0:
             if item.name != "Sulfuras, Hand of Ragnaros":
@@ -38,7 +40,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            update_item(item)
+            update_item(MalleableItem(item))
 
 
 class Item:
@@ -49,3 +51,8 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+class MalleableItem:
+    def __init__(self, item):
+        self.item = item
