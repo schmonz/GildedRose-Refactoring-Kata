@@ -10,6 +10,8 @@ class GildedRose(object):
         for item in self.items:
             if item.name == "Sulfuras, Hand of Ragnaros":
                 Sulfuras(item).update()
+            elif item.name == "Aged Brie":
+                AgedBrie(item).update()
             else:
                 MalleableItem(item).update()
 
@@ -57,7 +59,7 @@ class MalleableItem:
     def update(self):
         item = self.item
 
-        if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
+        if item.name == "Backstage passes to a TAFKAL80ETC concert":
             self.increase_quality()
             self.increase_backstage_quality_further()
         else:
@@ -66,9 +68,7 @@ class MalleableItem:
         self.decrease_sell_in()
 
         if item.sell_in < 0:
-            if item.name == "Aged Brie":
-                self.increase_quality()
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            if item.name == "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = 0
             else:
                 self.decrease_quality()
@@ -80,3 +80,11 @@ class Sulfuras(MalleableItem):
 
     def decrease_sell_in(self):
         pass
+
+
+class AgedBrie(MalleableItem):
+    def update(self):
+        self.increase_quality()
+        self.decrease_sell_in()
+        if self.item.sell_in < 0:
+            self.increase_quality()
