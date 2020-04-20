@@ -57,11 +57,11 @@ class MalleableItem:
     def update(self):
         item = self.item
 
-        if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-            self.decrease_quality()
-        else:
+        if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
             self.increase_quality()
             self.increase_backstage_quality_further()
+        else:
+            self.decrease_quality()
         self.decrease_sell_in()
         if item.sell_in < 0:
             if item.name == "Aged Brie":
