@@ -82,7 +82,7 @@ class BackstagePasses(MalleableItem):
             self.increase_quality()
 
     def update(self):
-        self.increase_quality()
+        self.update_quality()
 
         self.decrease_sell_in()
 
