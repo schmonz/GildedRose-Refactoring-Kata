@@ -49,18 +49,18 @@ class MalleableItem:
             self.item.quality = self.item.quality + 1
 
     def update(self):
-        self.update_quality()
+        self.before_updating_sell_in()
 
         self.decrease_sell_in()
 
         if self.item.sell_in < 0:
-            self.when_sell_in_has_passed()
+            self.when_sell_date_has_passed()
 
-    def update_quality(self):
+    def before_updating_sell_in(self):
         self.decrease_quality()
 
-    def when_sell_in_has_passed(self):
-        self.update_quality()
+    def when_sell_date_has_passed(self):
+        self.before_updating_sell_in()
 
 
 class Sulfuras(MalleableItem):
@@ -72,23 +72,23 @@ class Sulfuras(MalleableItem):
 
 
 class AgedBrie(MalleableItem):
-    def update_quality(self):
+    def before_updating_sell_in(self):
         self.increase_quality()
 
 
 class BackstagePasses(MalleableItem):
-    def update_quality(self):
+    def before_updating_sell_in(self):
         self.increase_quality()
         if self.item.sell_in <= 10:
             self.increase_quality()
         if self.item.sell_in <= 5:
             self.increase_quality()
 
-    def when_sell_in_has_passed(self):
+    def when_sell_date_has_passed(self):
         self.item.quality = 0
 
 
 class Conjured(MalleableItem, object):
-    def update_quality(self):
+    def before_updating_sell_in(self):
         super(Conjured, self).decrease_quality()
         super(Conjured, self).decrease_quality()
