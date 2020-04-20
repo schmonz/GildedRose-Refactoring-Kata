@@ -8,7 +8,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            MalleableItem(item).update_item()
+            MalleableItem(item).update()
 
 
 class Item:
@@ -25,7 +25,7 @@ class MalleableItem:
     def __init__(self, item):
         self.item = item
 
-    def update_item(self):
+    def update(self):
         item = self.item
 
         if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
