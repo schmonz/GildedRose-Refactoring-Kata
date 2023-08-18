@@ -9,11 +9,14 @@ class GildedRose(var items: List<Item>) {
     }
 
     private fun updateQualityForItem(item: Item) {
-        // if it's agedBrie call updateAgedBrieItem(item)
         if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") {
             if (itemQualityNotTooLow(item)) {
                 if (item.name != "Sulfuras, Hand of Ragnaros") {
-                    item.quality = incrementQualityForItem(item, -1)
+                    if (item.name == "Conjured Mana Cake") {
+                        item.quality = incrementQualityForItem(item, -2)
+                    } else {
+                        item.quality = incrementQualityForItem(item, -1)
+                    }
                 }
             }
         } else {
@@ -45,7 +48,11 @@ class GildedRose(var items: List<Item>) {
                 if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
                     if (itemQualityNotTooLow(item)) {
                         if (item.name != "Sulfuras, Hand of Ragnaros") {
-                            item.quality = incrementQualityForItem(item, -1)
+                            if (item.name == "Conjured Mana Cake") {
+                                item.quality = incrementQualityForItem(item, -2)
+                            } else {
+                                item.quality = incrementQualityForItem(item, -1)
+                            }
                         }
                     }
                 } else {
