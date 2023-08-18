@@ -16,18 +16,18 @@ class GildedRose(var items: List<Item>) {
                 }
             }
         } else {
-            if (item.quality < 50) {
+            if (itemQualityNotTooHigh(item)) {
                 item.quality = incrementQualityForItem(item, 1)
 
                 if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
                     if (item.sellIn < 11) {
-                        if (item.quality < 50) {
+                        if (itemQualityNotTooHigh(item)) {
                             item.quality = incrementQualityForItem(item, 1)
                         }
                     }
 
                     if (item.sellIn < 6) {
-                        if (item.quality < 50) {
+                        if (itemQualityNotTooHigh(item)) {
                             item.quality = incrementQualityForItem(item, 1)
                         }
                     }
@@ -51,12 +51,14 @@ class GildedRose(var items: List<Item>) {
                     item.quality = 0
                 }
             } else {
-                if (item.quality < 50) {
+                if (itemQualityNotTooHigh(item)) {
                     item.quality = incrementQualityForItem(item, 1)
                 }
             }
         }
     }
+
+    private fun itemQualityNotTooHigh(item: Item) = item.quality < 50
 
     private fun incrementQualityForItem(item: Item, i: Int): Int = item.quality + i
 
