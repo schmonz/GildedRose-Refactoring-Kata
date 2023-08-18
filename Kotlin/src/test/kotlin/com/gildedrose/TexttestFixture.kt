@@ -2,8 +2,6 @@ package com.gildedrose
 
 fun main(args: Array<String>) {
 
-    println("OMGHAI!")
-
     val items = listOf(Item("+5 Dexterity Vest", 10, 20), //
             Item("Aged Brie", 2, 0), //
             Item("Elixir of the Mongoose", 5, 7), //
@@ -17,7 +15,7 @@ fun main(args: Array<String>) {
 
     val app = GildedRose(items)
 
-    var days = 2
+    var days = 500
     if (args.size > 0) {
         days = Integer.parseInt(args[0]) + 1
     }
@@ -31,4 +29,17 @@ fun main(args: Array<String>) {
         println()
         app.updateQuality()
     }
+
+    /*
+    business rules not to mess up:
+    normal items go down 1 in sellIn and quality
+    quality might be not be allowed to increase (for all items?) beyond 50
+    Brie gets one better with age, then 2 better after sellIn
+    what happens to quality for normal items after sellIn? go to 0, decrease twice as fast, ???
+    backstage passes increase quality by 1 more than 10 days out; less, increase by 2. less than 5, maybe more?
+    backstage passes quality goes to 0 after the date
+
+    new rule to add:
+    whatever happens to normal quality, happens twice as fast for "Conjured"
+     */
 }
