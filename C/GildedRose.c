@@ -13,12 +13,6 @@ init_item(Item* item, const char *name, int sellIn, int quality)
     return item;
 }
 
-extern char* 
-print_item(char* buffer, Item* item) 
-{
-    sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
-}
-
 bool is_brie(Item item)
 {
     return (0 == strcmp(item.name, "Aged Brie"));
